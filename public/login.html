@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | INF-CNK3 Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0B3C5D 0%, #072a42 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .login-logo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #F28C28;
+      margin-bottom: 15px;
+    }
+    .login-logo h1 {
+      color: #0B3C5D;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    .login-logo p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      color: #0B3C5D;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #1E88E5;
+      box-shadow: 0 0 0 3px rgba(30,136,229,0.1);
+    }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: #F28C28;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-login:hover {
+      background: #e07b1a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(242,140,40,0.3);
+    }
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .error-msg, .success-msg {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: none;
+    }
+    .error-msg {
+      background: #fee;
+      color: #c33;
+    }
+    .success-msg {
+      background: #efe;
+      color: #3c3;
+    }
+    .error-msg.show, .success-msg.show {
+      display: block;
+    }
+    .login-footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .login-footer a {
+      color: #1E88E5;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+    .alert-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #856404;
+    }
+    .alert-box i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="hero-robot.png" alt="Logo">
+      <h1>INF-CNK3</h1>
+      <p>Painel Administrativo</p>
+    </div>
+    
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="success-msg" id="successMsg"></div>
+    
+    <!-- Formulário de Login -->
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
+      </div>
+      
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+      </div>
+      
+      <button type="submit" class="btn-login" id="btnLogin">
+        <i class="fas fa-sign-in-alt"></i> Entrar
+      </button>
+    </form>
+    
+    <!-- Formulário de Alterar Senha (primeiro acesso) -->
+    <form id="changePasswordForm" style="display:none;">
+      <div class="alert-box">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Primeiro acesso!</strong> Por segurança, altere sua senha agora.
+      </div>
+      
+      <div class="form-group">
+        <label for="novaSenha">Nova Senha</label>
+        <input type="password" id="novaSenha" required minlength="6" placeholder="Mínimo 6 caracteres">
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmSenha">Confirmar Senha</label>
+        <input type="password" id="confirmSenha" required minlength="6" placeholder="Repita a senha">
+      </div>
+      
+      <button type="submit" class="btn-login" id="btnChangePassword">
+        <i class="fas fa-key"></i> Alterar Senha
+      </button>
+    </form>
+    
+    <div class="login-footer">
+      <a href="/"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+    </div>
+  </div>
+
+  <script>
+    let token = null;
+    
+    // Verificar se já está logado
+    fetch('/api/check-auth')
+      .then(r => r.json())
+      .then(data => {
+        if (data.authenticated && !data.primeiroAcesso) {
+          window.location.href = '/admin.html';
+        } else if (data.authenticated && data.primeiroAcesso) {
+          document.getElementById('loginForm').style.display = 'none';
+          document.getElementById('changePasswordForm').style.display = 'block';
+        }
+      });
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('btnLogin');
+      const errorMsg = document.getElementById('errorMsg');
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+      
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+      errorMsg.classList.remove('show');
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, senha })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          token = data.token;
+          localStorage.setItem('token', token);
+          
+          if (data.primeiroAcesso) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('changePasswordForm').style.display = 'block';
+          } else {
+            window.location.href = '/admin.html';
+          }
+        } else {
+          errorMsg.textContent = data.error || 'Erro ao fazer login';
+          errorMsg.classList.add('show');
+        }
+      } catch (error) {
+        errorMsg.textContent = 'Erro de conexão. Tente novamente.';
+        errorMsg.classList.add('show');
+      }
+      
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+    });
+
+    // Alterar senha
+    document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('btnChangePassword');
+      const errorMsg = document.getElementById('errorMsg');
+      const successMsg = document.getElementById('successMsg');
+      const novaSenha = document.getElementById('novaSenha').value;
+      const confirmSenha = document.getElementById('confirmSenha').value;
+      
+      if (novaSenha !== confirmSenha) {
+        errorMsg.textContent = 'As senhas não coincidem!';
+        errorMsg.classList.add('show');
+        return;
+      }
+      
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Alterando...';
+      errorMsg.classList.remove('show');
+      successMsg.classList.remove('show');
+      
+      try {
+        const response = await fetch('/api/change-password', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ 
+            senhaAtual: 'inf123',
+            novaSenha 
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          successMsg.textContent = 'Senha alterada com sucesso! Redirecionando...';
+          successMsg.classList.add('show');
+          setTimeout(() => {
+            window.location.href = '/admin.html';
+          }, 2000);
+        } else {
+          errorMsg.textContent = data.error || 'Erro ao alterar senha';
+          errorMsg.classList.add('show');
+        }
+      } catch (error) {
+        errorMsg.textContent = 'Erro de conexão. Tente novamente.';
+        errorMsg.classList.add('show');
+      }
+      
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-key"></i> Alterar Senha';
+    });
+  </script>
+</body>
+</html>

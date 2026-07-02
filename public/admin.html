@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin | INF-CNK3</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="hero-robot.png" alt="Logo">
+        <h2>INF-CNK3</h2>
+        <span>Painel Admin</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="dashboard">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="#" class="nav-item" data-section="empresa">
+          <i class="fas fa-building"></i> Empresa
+        </a>
+        <a href="#" class="nav-item" data-section="contato">
+          <i class="fas fa-phone"></i> Contato
+        </a>
+        <a href="#" class="nav-item" data-section="servicos">
+          <i class="fas fa-tools"></i> Serviços
+        </a>
+        <a href="#" class="nav-item" data-section="portfolio">
+          <i class="fas fa-images"></i> Portfólio
+        </a>
+        <a href="#" class="nav-item" data-section="depoimentos">
+          <i class="fas fa-comments"></i> Depoimentos
+        </a>
+        <a href="#" class="nav-item" data-section="orcamentos">
+          <i class="fas fa-file-invoice-dollar"></i> Orçamentos
+        </a>
+        <a href="#" class="nav-item" data-section="imagens">
+          <i class="fas fa-photo-video"></i> Imagens
+        </a>
+        <a href="#" class="nav-item" data-section="config">
+          <i class="fas fa-cog"></i> Configurações
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Site</a>
+        <a href="#" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-bar">
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="user-info">
+          <span id="userName">Admin</span>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <!-- Dashboard -->
+        <section class="content-section active" id="section-dashboard">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <i class="fas fa-tools"></i>
+              <div class="stat-info">
+                <h3 id="statServicos">0</h3>
+                <p>Serviços</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-images"></i>
+              <div class="stat-info">
+                <h3 id="statPortfolio">0</h3>
+                <p>Portfólio</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-comments"></i>
+              <div class="stat-info">
+                <h3 id="statDepoimentos">0</h3>
+                <p>Depoimentos</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <div class="stat-info">
+                <h3 id="statOrcamentos">0</h3>
+                <p>Orçamentos</p>
+              </div>
+            </div>
+          </div>
+          <div class="welcome-card">
+            <h2>Bem-vindo ao Painel Administrativo!</h2>
+            <p>Gerencie todo o conteúdo do site INF-CNK3 de forma simples e rápida.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Edite informações da empresa</li>
+              <li><i class="fas fa-check"></i> Gerencie serviços oferecidos</li>
+              <li><i class="fas fa-check"></i> Adicione/remova itens do portfólio</li>
+              <li><i class="fas fa-check"></i> Crie orçamentos profissionais com PDF</li>
+              <li><i class="fas fa-check"></i> Faça upload de imagens organizadas</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Empresa -->
+        <section class="content-section" id="section-empresa">
+          <form id="formEmpresa">
+            <div class="form-group">
+              <label>Nome da Empresa</label>
+              <input type="text" id="empNome" required>
+            </div>
+            <div class="form-group">
+              <label>Anos de Experiência</label>
+              <input type="text" id="empAnos" placeholder="Ex: 10+">
+            </div>
+            <div class="form-group">
+              <label>CNPJ</label>
+              <input type="text" id="empCnpj">
+            </div>
+            <div class="form-group">
+              <label>Descrição Principal</label>
+              <textarea id="empDescricao" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Descrição Secundária</label>
+              <textarea id="empDescricao2" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-save"><i class="fas fa-save"></i> Salvar Alterações</button>
+          </form>
+        </section>
+
+        <!-- Contato -->
+        <section class="content-section" id="section-contato">
+          <form id="formContato">
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="text" id="contTelefone" required>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp (apenas números com DDD)</label>
+              <input type="text" id="contWhatsapp" placeholder="5521999999999" required>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" id="contEmail" required>
+            </div>
+            <div class="form-group">
+              <label>Endereço</label>
+              <input type="text" id="contEndereco" required>
+            </div>
+            <button type="submit" class="btn-save"><i class="fas fa-save"></i> Salvar Alterações</button>
+          </form>
+        </section>
+
+        <!-- Serviços -->
+        <section class="content-section" id="section-servicos">
+          <div id="servicosList"></div>
+          <button type="button" class="btn-add" id="btnAddServico">
+            <i class="fas fa-plus"></i> Adicionar Categoria
+          </button>
+          <button type="button" class="btn-save" id="btnSaveServicos">
+            <i class="fas fa-save"></i> Salvar Todos
+          </button>
+        </section>
+
+        <!-- Portfólio -->
+        <section class="content-section" id="section-portfolio">
+          <div id="portfolioList"></div>
+          <button type="button" class="btn-add" id="btnAddPortfolio">
+            <i class="fas fa-plus"></i> Adicionar Item
+          </button>
+          <button type="button" class="btn-save" id="btnSavePortfolio">
+            <i class="fas fa-save"></i> Salvar Todos
+          </button>
+        </section>
+
+        <!-- Depoimentos -->
+        <section class="content-section" id="section-depoimentos">
+          <div id="depoimentosList"></div>
+          <button type="button" class="btn-add" id="btnAddDepoimento">
+            <i class="fas fa-plus"></i> Adicionar Depoimento
+          </button>
+          <button type="button" class="btn-save" id="btnSaveDepoimentos">
+            <i class="fas fa-save"></i> Salvar Todos
+          </button>
+        </section>
+
+        <!-- Orçamentos -->
+        <section class="content-section" id="section-orcamentos">
+          <div class="orcamentos-header">
+            <button type="button" class="btn-add" id="btnNovoOrcamento">
+              <i class="fas fa-plus"></i> Novo Orçamento
+            </button>
+          </div>
+          <div id="orcamentosList"></div>
+        </section>
+
+        <!-- Imagens -->
+        <section class="content-section" id="section-imagens">
+          <div class="upload-section">
+            <div class="form-group">
+              <label>Categoria de Upload</label>
+              <select id="uploadCategory">
+                <option value="servicos">Serviços</option>
+                <option value="portfolio/antes">Portfólio - Antes</option>
+                <option value="portfolio/depois">Portfólio - Depois</option>
+                <option value="clientes">Clientes</option>
+                <option value="logos">Logos</option>
+              </select>
+            </div>
+            <div class="upload-area" id="uploadArea">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Arraste imagens aqui ou clique para selecionar</p>
+              <input type="file" id="fileInput" multiple accept="image/*" style="display:none">
+            </div>
+          </div>
+          <div class="images-grid" id="imagesGrid"></div>
+        </section>
+
+        <!-- Configurações -->
+        <section class="content-section" id="section-config">
+          <div class="config-card">
+            <h3>Alterar Senha</h3>
+            <form id="formSenha">
+              <div class="form-group">
+                <label>Senha Atual</label>
+                <input type="password" id="senhaAtual" required>
+              </div>
+              <div class="form-group">
+                <label>Nova Senha</label>
+                <input type="password" id="novaSenha" required minlength="6">
+              </div>
+              <div class="form-group">
+                <label>Confirmar Nova Senha</label>
+                <input type="password" id="confirmSenha" required minlength="6">
+              </div>
+              <button type="submit" class="btn-save"><i class="fas fa-key"></i> Alterar Senha</button>
+            </form>
+          </div>
+          <div class="config-card">
+            <h3>Backup de Dados</h3>
+            <p>Exporte ou importe os dados do site.</p>
+            <div class="btn-group">
+              <button class="btn-action" id="btnExport"><i class="fas fa-download"></i> Exportar Dados</button>
+              <button class="btn-action" id="btnImport"><i class="fas fa-upload"></i> Importar Dados</button>
+            </div>
+            <input type="file" id="importFile" accept=".json" style="display:none">
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Orçamento -->
+  <div class="modal" id="modalOrcamento">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Novo Orçamento</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="formOrcamento">
+        <div class="form-group">
+          <label>Cliente</label>
+          <input type="text" id="orcCliente" required>
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="text" id="orcTelefone">
+        </div>
+        <div class="form-group">
+          <label>Endereço</label>
+          <input type="text" id="orcEndereco">
+        </div>
+        
+        <h3>Serviços</h3>
+        <div id="servicosOrcamento"></div>
+        <button type="button" class="btn-add-small" onclick="addServicoOrc()">+ Serviço</button>
+        
+        <h3>Materiais</h3>
+        <div id="materiaisOrcamento"></div>
+        <button type="button" class="btn-add-small" onclick="addMaterialOrc()">+ Material</button>
+        
+        <div class="form-group">
+          <label>Mão de Obra (R$)</label>
+          <input type="number" id="orcMaoDeObra" step="0.01" value="0">
+        </div>
+        
+        <div class="form-group">
+          <label>Observações</label>
+          <textarea id="orcObservacoes" rows="3"></textarea>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+          <button type="submit" class="btn-save">Salvar Orçamento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
