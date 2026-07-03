@@ -1,15 +1,15 @@
 {
   "empresa": {
     "nome": "INF-CNK3",
-    "cnpj": "42.606.310.0001-79",
-    "anosExperiencia": 20,
+    "cnpj": "",
+    "anosExperiencia": 0,
     "descricao": ""
   },
   "contato": {
-    "telefone": "21 99455-1228",
-    "whatsapp": "21 99455-1228",
-    "email": "infcnk3@gmail.com",
-    "endereco": "Rua Professor Silvio Elia, 46"
+    "telefone": "",
+    "whatsapp": "",
+    "email": "",
+    "endereco": ""
   },
   "servicos": [],
   "portfolio": [],
