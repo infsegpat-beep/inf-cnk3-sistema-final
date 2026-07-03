@@ -1,0 +1,18 @@
+{
+  "empresa": {
+    "nome": "INF-CNK3",
+    "cnpj": "",
+    "anosExperiencia": 0,
+    "descricao": ""
+  },
+  "contato": {
+    "telefone": "",
+    "whatsapp": "",
+    "email": "",
+    "endereco": ""
+  },
+  "servicos": [],
+  "portfolio": [],
+  "depoimentos": [],
+  "orcamentos": []
+}
